@@ -1,0 +1,109 @@
+.dropdown-wrapper {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+
+	.label {
+		margin: 0 1rem;
+	}
+}
+
+.dropdown {
+	position: relative;
+	width: 100px;
+	font-size: 14px;
+	font-weight: 500;
+
+	&__button {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1;
+		text-align: left;
+		color: $color-primary;
+		background-color: transparent;
+		border: 1px solid $color-primary;
+		padding: 10px 7px;
+		border-radius: 5px;
+
+		&:hover,
+		&:focus {
+			color: $color-primary;
+			background: rgba(
+				0,
+				118,
+				255,
+				0.1
+			);
+			border-color: rgba(
+				0,
+				118,
+				255,
+				0.1
+			);
+		}
+		svg {
+			margin-left: 0.5rem;
+		}
+		label {
+			transition: $transition-main;
+			cursor: pointer;
+		}
+	}
+
+	&__list {
+		position: absolute;
+		overflow: hidden;
+		width: 100%;
+		z-index: 2;
+		transition: $transition-main;
+		box-shadow: $box-shadow-low;
+		opacity: 0;
+		visibility: hidden;
+		// background-color: $color-white;
+
+		&:active {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
+	&__list-item {
+		border-radius: 0;
+		transition: $transition-main;
+		&:hover,
+		&:focus {
+			background-color: $color-light-grey;
+		}
+		&:first-of-type {
+			button {
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+			}
+		}
+		&:last-of-type {
+			button {
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
+			}
+		}
+		button {
+			color: $color-primary;
+			background: rgba(
+				0,
+				118,
+				255,
+				0.1
+			);
+			padding: 10px 7px;
+			width: 100%;
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 1;
+			text-align: left;
+		}
+	}
+}
