@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Octicon, { Repo, Star, RepoForked, TriangleDown } from '@primer/octicons-react';
 
 const Repos = () => {
-  return (
 
+  const [dropdownOpen, setDropdown] = useState(false);
+
+  const [sortType, setSortType] = useState('stars');
+
+
+  const toggleDropdown = () => setDropdown(!dropdownOpen);
+
+  const changeRepoSort = sortType => {
+    setSortType(sortType);
+    toggleDropdown();
+  };
+
+  const sortTypes = ['stars', 'forks', 'size'];
+
+  return (
     <div className="repos">
       <header className="header">
         <h2>Top Repos</h2>
@@ -10,28 +25,21 @@ const Repos = () => {
           <span className="label">by</span>
           <div className="dropdown">
 
-            <button className="dropdown__button">
-              <label>stars</label>
-              {/* <svg className="octicon"></svg> */}
+            <button className="dropdown__button" onClick={() => toggleDropdown()}>
+              <label>{sortType}</label>
+              <Octicon icon={TriangleDown} />
             </button>
 
-            <ul className="dropdown__list" >
-              <li className="dropdown__list-item" >
-                <button>
-                  stars
-                </button>
-              </li>
-              <li className="dropdown__list-item" >
-                <button>
-                  forks
-                </button>
-              </li>
-              <li className="dropdown__list-item" >
-                <button>
-                  size
-                </button>
-              </li>
-            </ul>
+            {dropdownOpen &&
+              <ul className="dropdown__list" >
+                {sortTypes.map((type, index) => (
+                  <li className="dropdown__list-item" key={index}>
+                    <button onClick={() => changeRepoSort(type)}>{type}</button>
+                  </li>
+                ))}
+              </ul>
+            }
+
           </div>
         </div>
       </header>
@@ -42,7 +50,7 @@ const Repos = () => {
             <a href="!#" target="_blank" rel="noopener noreferrer" className="repo" >
               <div className="repo__top"  >
                 <div className="repo__name" >
-                  {/* <svg className="octicon"></svg> */}
+                  <Octicon icon={Repo} />
                   <h3>crwn-clothing</h3>
                 </div>
                 <p> Repo description </p>
@@ -54,15 +62,14 @@ const Repos = () => {
                     Javascript
                   </span>
                   <span>
-                    {/* <svg className="octicon"  ></svg> */}
+                    <Octicon icon={Star} />
                     0
                   </span>
                   <span>
-                    {/* <svg className="octicon" ></svg> */}
+                    <Octicon icon={RepoForked} />
                     0
                   </span>
                 </div>
-
                 <div className="repo__stats--right">
                   <span>1234 KB  </span>
                 </div>

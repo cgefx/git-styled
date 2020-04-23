@@ -61,8 +61,8 @@
 		z-index: 2;
 		transition: $transition-main;
 		box-shadow: $box-shadow-low;
-		opacity: 0;
-		visibility: hidden;
+		opacity: 1;
+		visibility: visible;
 		// background-color: $color-white;
 
 		&:active {

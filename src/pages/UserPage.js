@@ -8,16 +8,17 @@ const UserPage = () => {
   return (
     <>
       <Navbar />
-      <section className="section">
-        <div className="flex-row">
-          <UserInfo />
-          <Charts />
-
-        </div>
-      </section>
-      <section className="section">
-        <Repos />
-      </section>
+      <main>
+        <section className="section">
+          <div className="flex-row">
+            <UserInfo />
+            <Charts />
+          </div>
+        </section>
+        <section className="section">
+          <Repos />
+        </section>
+      </main>
     </>
   );
 };

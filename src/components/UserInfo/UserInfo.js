@@ -1,10 +1,12 @@
 import React from 'react';
+import Octicon, { Calendar, Location } from '@primer/octicons-react';
+import avatar from '../../assets/img/catprofile.jpg';
 
 const UserInfo = () => {
   return (
     <div className="user-info">
       <div className="user-info__avatar">
-        <img src="./img/catprofile.jpg" alt="avatar" />
+        <img src={avatar} alt="avatar" />
       </div>
 
       <div className="user-info__name">
@@ -17,9 +19,11 @@ const UserInfo = () => {
 
       <div className="info">
         <span className="info__item">
+          <Octicon icon={Location} size="small" />
           Los Angeles, CA
         </span>
         <span className="info__item">
+          <Octicon icon={Calendar} size="small" />
           Joined December 1,2018
         </span>
       </div>
