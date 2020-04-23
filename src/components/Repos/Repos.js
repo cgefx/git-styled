@@ -50,7 +50,10 @@ const Repos = () => {
             <a href="!#" target="_blank" rel="noopener noreferrer" className="repo" >
               <div className="repo__top"  >
                 <div className="repo__name" >
-                  <Octicon icon={Repo} />
+                  <div className="icon-wrapper">
+                    <Octicon icon={Repo} />
+                  </div>
+
                   <h3>crwn-clothing</h3>
                 </div>
                 <p> Repo description </p>

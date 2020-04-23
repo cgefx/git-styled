@@ -3,10 +3,13 @@ import Octicon, { MarkGithub } from '@primer/octicons-react';
 
 const UserForm = () => {
   return (
-    <div class="user-form">
-      <Octicon icon={MarkGithub} size="large" />
+    <div className="user-form">
+      <div className="icon-wrapper">
+        <Octicon icon={MarkGithub} size="large" />
+      </div>
 
-      <form class="user-form__form">
+
+      <form className="user-form__form">
         <label htmlFor="username">
           Github is kinda boring.
           Let's style your
@@ -20,7 +23,7 @@ const UserForm = () => {
           placeholder="type a username..." />
 
         <button
-          class="user-form__button"
+          className="user-form__button"
           type="submit">
           Git Styled!
       </button>

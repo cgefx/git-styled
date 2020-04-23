@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <Navbar />
       <main>
-        <section class="section">
+        <section className="section">
           <UserForm />
         </section>
       </main>
