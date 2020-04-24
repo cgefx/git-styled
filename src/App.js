@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Route exact path='/' component={HomePage} />
-      <Route exact path='/user' component={UserPage} />
+      <Route exact path='/user/:username' component={UserPage} />
       <Route exact path='/about' component={AboutPage} />
     </Router>
   );
