@@ -1,26 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Octicon, { Calendar, Location } from '@primer/octicons-react';
-import avatar from '../../assets/img/catprofile.jpg';
 
-const UserInfo = () => {
+
+const UserInfo = ({ userData }) => {
+
+  console.log(userData);
+
+
   return (
+
     <div className="user-info">
       <div className="user-info__avatar">
-        <img src={avatar} alt="avatar" />
+        <img src={userData.avatar_url} alt="avatar" />
       </div>
 
       <div className="user-info__name">
-        <h1>Colin A. Gibson</h1>
+        <h1>{userData.name}</h1>
       </div>
 
       <div className="user-info__handle" >
-        <h2>@cgefx</h2>
+        <h2>{userData.login}</h2>
       </div>
 
       <div className="info">
         <span className="info__item">
           <Octicon icon={Location} size="small" />
-          Los Angeles, CA
+          {userData.location}
         </span>
         <span className="info__item">
           <Octicon icon={Calendar} size="small" />
@@ -46,6 +52,10 @@ const UserInfo = () => {
       </div>
     </div>
   );
+};
+
+UserInfo.propTypes = {
+  userData: PropTypes.object.isRequired,
 };
 
 export default UserInfo;

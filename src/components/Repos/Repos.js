@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import Octicon, { Repo, Star, RepoForked, TriangleDown } from '@primer/octicons-react';
 
-const Repos = () => {
-
+const Repos = ({ repoData }) => {
   const [dropdownOpen, setDropdown] = useState(false);
-
   const [sortType, setSortType] = useState('stars');
 
+  console.log(repoData);
 
   const toggleDropdown = () => setDropdown(!dropdownOpen);
 
