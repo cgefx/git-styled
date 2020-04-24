@@ -1,11 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Octicon, { Repo, Star, RepoForked, TriangleDown } from '@primer/octicons-react';
+import languageColors from '../../utils/languageColors';
+
 
 const Repos = ({ repoData }) => {
+  const [topRepos, setTopRepos] = useState([]);
   const [dropdownOpen, setDropdown] = useState(false);
   const [sortType, setSortType] = useState('stars');
 
-  console.log(repoData);
+  const getTopRepos = type => {
+    const LIMIT = 8;
+
+    const map = {
+      stars: 'stargazers_count',
+      updated: 'pushed_at',
+      size: 'size'
+    };
+
+    const sortProperty = map[type];
+
+    const sorted = repoData
+      .filter(repo => !repo.fork)
+      .sort((a, b) => (sortProperty === 'pushed_at') ?
+        Date.parse(b[sortProperty]) - Date.parse(a[sortProperty]) :
+        b[sortProperty] - a[sortProperty])
+      .slice(0, LIMIT);
+
+    setTopRepos(sorted);
+
+  };
+
+  useEffect(() => {
+    if (repoData.length) {
+      getTopRepos();
+    }
+  }, []);
+
+  useEffect(() => getTopRepos(sortType), [sortType]);
 
   const toggleDropdown = () => setDropdown(!dropdownOpen);
 
@@ -14,7 +45,7 @@ const Repos = ({ repoData }) => {
     toggleDropdown();
   };
 
-  const sortTypes = ['stars', 'forks', 'size'];
+  const sortTypes = ['stars', 'updated', 'size'];
 
   return (
     <div className="repos">
@@ -44,41 +75,49 @@ const Repos = ({ repoData }) => {
       </header>
 
       <div className="repo-list">
-        <ul>
-          <li>
-            <a href="!#" target="_blank" rel="noopener noreferrer" className="repo" >
-              <div className="repo__top"  >
-                <div className="repo__name" >
-                  <div className="icon-wrapper">
-                    <Octicon icon={Repo} />
-                  </div>
+        {topRepos.length > 0 ? (
 
-                  <h3>crwn-clothing</h3>
-                </div>
-                <p> Repo description </p>
-              </div>
-              <div className="repo__stats" >
-                <div className="repo__stats--left" >
-                  <span>
-                    <div className="language" ></div>
-                    Javascript
-                  </span>
-                  <span>
-                    <Octicon icon={Star} />
-                    0
-                  </span>
-                  <span>
-                    <Octicon icon={RepoForked} />
-                    0
-                  </span>
-                </div>
-                <div className="repo__stats--right">
-                  <span>1234 KB  </span>
-                </div>
-              </div>
+          <ul>
+            {topRepos.map(repo => (
+              <li key={repo.id}>
+                <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="repo" >
+                  <div className="repo__top"  >
+                    <div className="repo__name" >
+                      <div className="icon-wrapper">
+                        <Octicon icon={Repo} />
+                      </div>
+
+                      <h3>{repo.name}</h3>
+                    </div>
+                    <p>{repo.description}</p>
+                  </div>
+                  <div className="repo__stats" >
+                    <div className="repo__stats--left" >
+                      <span>
+                        <div
+                          className="language"
+                          style={{ backgroundColor: languageColors[repo.language]}}
+                            />
+                            { repo.language }
+                      </span>
+                      <span>
+                          <Octicon icon={Star} />
+                          {repo.stargazers_count}
+                        </span>
+                        <span>
+                          <Octicon icon={RepoForked} />
+                          {repo.forks}
+                        </span>
+                    </div>
+                      <div className="repo__stats--right">
+                        <span>{repo.size} KB  </span>
+                      </div>
+                    </div>
             </a>
           </li>
+        ))}
         </ul>
+            ) : (<p>Looks like there aren't any repos to show</p>)}
       </div>
     </div>
   );
