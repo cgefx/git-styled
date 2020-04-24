@@ -20,7 +20,7 @@ const UserInfo = ({ userData }) => {
       </div>
 
       <div className="user-info__handle" >
-        <h2>{userData.login}</h2>
+        <h2>@{userData.login}</h2>
       </div>
 
       <div className="info">
