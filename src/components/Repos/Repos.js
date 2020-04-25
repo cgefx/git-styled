@@ -72,7 +72,9 @@ const Repos = ({ repoData }) => {
 							<ul className='dropdown__list'>
 								{sortTypes.map((type, index) => (
 									<li className='dropdown__list-item' key={index}>
-										<button onClick={() => changeRepoSort(type)}>{type}</button>
+										<button onClick={() => changeRepoSort(type)}>
+											{type}
+										</button>
 									</li>
 								))}
 							</ul>
@@ -83,11 +85,11 @@ const Repos = ({ repoData }) => {
 
 			<Flipper
 				flipKey={topRepos}
-				spring='gentle'
+				spring='wobbly'
 				staggerConfig={{
 					default: {
-						stagger: 'forward',
-						speed: 3,
+						stagger: 'reverse',
+						speed: 0.01,
 					},
 				}}
 			>
@@ -118,7 +120,8 @@ const Repos = ({ repoData }) => {
 														<div
 															className='language'
 															style={{
-																backgroundColor: languageColors[repo.language],
+																backgroundColor:
+																	languageColors[repo.language],
 															}}
 														/>
 														{repo.language}
