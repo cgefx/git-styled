@@ -1,126 +1,153 @@
 import React, { useState, useEffect } from 'react';
-import Octicon, { Repo, Star, RepoForked, TriangleDown } from '@primer/octicons-react';
+import Octicon, {
+	Repo,
+	Star,
+	RepoForked,
+	TriangleDown,
+} from '@primer/octicons-react';
+import { Flipper, Flipped } from 'react-flip-toolkit';
 import languageColors from '../../utils/languageColors';
 
-
 const Repos = ({ repoData }) => {
-  const [topRepos, setTopRepos] = useState([]);
-  const [dropdownOpen, setDropdown] = useState(false);
-  const [sortType, setSortType] = useState('stars');
+	const [topRepos, setTopRepos] = useState([]);
+	const [dropdownOpen, setDropdown] = useState(false);
+	const [sortType, setSortType] = useState('stars');
 
-  const getTopRepos = type => {
-    const LIMIT = 8;
+	const getTopRepos = type => {
+		const LIMIT = 8;
 
-    const map = {
-      stars: 'stargazers_count',
-      updated: 'pushed_at',
-      size: 'size'
-    };
+		const map = {
+			stars: 'stargazers_count',
+			updated: 'pushed_at',
+			size: 'size',
+		};
 
-    const sortProperty = map[type];
+		const sortProperty = map[type];
 
-    const sorted = repoData
-      .filter(repo => !repo.fork)
-      .sort((a, b) => (sortProperty === 'pushed_at') ?
-        Date.parse(b[sortProperty]) - Date.parse(a[sortProperty]) :
-        b[sortProperty] - a[sortProperty])
-      .slice(0, LIMIT);
+		const sorted = repoData
+			.filter(repo => !repo.fork)
+			.sort((a, b) =>
+				sortProperty === 'pushed_at'
+					? Date.parse(b[sortProperty]) - Date.parse(a[sortProperty])
+					: b[sortProperty] - a[sortProperty],
+			)
+			.slice(0, LIMIT);
 
-    setTopRepos(sorted);
+		setTopRepos(sorted);
+	};
 
-  };
+	useEffect(() => {
+		if (repoData.length) {
+			getTopRepos();
+		}
+	}, []);
 
-  useEffect(() => {
-    if (repoData.length) {
-      getTopRepos();
-    }
-  }, []);
+	useEffect(() => getTopRepos(sortType), [sortType]);
 
-  useEffect(() => getTopRepos(sortType), [sortType]);
+	const toggleDropdown = () => setDropdown(!dropdownOpen);
 
-  const toggleDropdown = () => setDropdown(!dropdownOpen);
+	const changeRepoSort = sortType => {
+		setSortType(sortType);
+		toggleDropdown();
+	};
 
-  const changeRepoSort = sortType => {
-    setSortType(sortType);
-    toggleDropdown();
-  };
+	const sortTypes = ['stars', 'updated', 'size'];
 
-  const sortTypes = ['stars', 'updated', 'size'];
+	return (
+		<div className='repos'>
+			<header className='header'>
+				<h2>Top Repos</h2>
+				<div className='dropdown-wrapper'>
+					<span className='label'>by</span>
+					<div className='dropdown'>
+						<button
+							className='dropdown__button'
+							onClick={() => toggleDropdown()}
+						>
+							<label>{sortType}</label>
+							<Octicon icon={TriangleDown} />
+						</button>
 
-  return (
-    <div className="repos">
-      <header className="header">
-        <h2>Top Repos</h2>
-        <div className="dropdown-wrapper" >
-          <span className="label">by</span>
-          <div className="dropdown">
+						{dropdownOpen && (
+							<ul className='dropdown__list'>
+								{sortTypes.map((type, index) => (
+									<li className='dropdown__list-item' key={index}>
+										<button onClick={() => changeRepoSort(type)}>{type}</button>
+									</li>
+								))}
+							</ul>
+						)}
+					</div>
+				</div>
+			</header>
 
-            <button className="dropdown__button" onClick={() => toggleDropdown()}>
-              <label>{sortType}</label>
-              <Octicon icon={TriangleDown} />
-            </button>
-
-            {dropdownOpen &&
-              <ul className="dropdown__list" >
-                {sortTypes.map((type, index) => (
-                  <li className="dropdown__list-item" key={index}>
-                    <button onClick={() => changeRepoSort(type)}>{type}</button>
-                  </li>
-                ))}
-              </ul>
-            }
-
-          </div>
-        </div>
-      </header>
-
-      <div className="repo-list">
-        {topRepos.length > 0 ? (
-
-          <ul>
-            {topRepos.map(repo => (
-              <li key={repo.id}>
-                <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="repo" >
-                  <div className="repo__top"  >
-                    <div className="repo__name" >
-                      <div className="icon-wrapper">
-                        <Octicon icon={Repo} />
-                      </div>
-
-                      <h3>{repo.name}</h3>
-                    </div>
-                    <p>{repo.description}</p>
-                  </div>
-                  <div className="repo__stats" >
-                    <div className="repo__stats--left" >
-                      <span>
-                        <div
-                          className="language"
-                          style={{ backgroundColor: languageColors[repo.language]}}
-                            />
-                            { repo.language }
-                      </span>
-                      <span>
-                          <Octicon icon={Star} />
-                          {repo.stargazers_count}
-                        </span>
-                        <span>
-                          <Octicon icon={RepoForked} />
-                          {repo.forks}
-                        </span>
-                    </div>
-                      <div className="repo__stats--right">
-                        <span>{repo.size} KB  </span>
-                      </div>
-                    </div>
-            </a>
-          </li>
-        ))}
-        </ul>
-            ) : (<p>Looks like there aren't any repos to show</p>)}
-      </div>
-    </div>
-  );
+			<Flipper
+				flipKey={topRepos}
+				spring='gentle'
+				staggerConfig={{
+					default: {
+						stagger: 'forward',
+						speed: 3,
+					},
+				}}
+			>
+				<div className='repo-list'>
+					{topRepos.length > 0 ? (
+						<ul>
+							{topRepos.map(repo => (
+								<Flipped key={repo.id} flipId={repo.id} stagger>
+									<li>
+										<a
+											href={repo.html_url}
+											target='_blank'
+											rel='noopener noreferrer'
+											className='repo'
+										>
+											<div className='repo__top'>
+												<div className='repo__name'>
+													<div className='icon-wrapper'>
+														<Octicon icon={Repo} />
+													</div>
+													<h3>{repo.name}</h3>
+												</div>
+												<p>{repo.description}</p>
+											</div>
+											<div className='repo__stats'>
+												<div className='repo__stats--left'>
+													<span>
+														<div
+															className='language'
+															style={{
+																backgroundColor: languageColors[repo.language],
+															}}
+														/>
+														{repo.language}
+													</span>
+													<span>
+														<Octicon icon={Star} />
+														{repo.stargazers_count}
+													</span>
+													<span>
+														<Octicon icon={RepoForked} />
+														{repo.forks}
+													</span>
+												</div>
+												<div className='repo__stats--right'>
+													<span>{repo.size} KB </span>
+												</div>
+											</div>
+										</a>
+									</li>
+								</Flipped>
+							))}
+						</ul>
+					) : (
+						<p>Looks like there aren't any repos to show</p>
+					)}
+				</div>
+			</Flipper>
+		</div>
+	);
 };
 
 export default Repos;
