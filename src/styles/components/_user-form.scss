@@ -1,14 +1,15 @@
 .user-form {
-	margin: 10rem auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	padding: 2rem;
-	width: 600px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	text-align: center;
 	background-color: $color-dark-grey;
-	height: 50vh;
 	border-radius: $border-radius;
 	box-shadow: $box-shadow-low;
 
@@ -17,6 +18,7 @@
 		text-align: center;
 		svg {
 			color: $color-primary;
+			margin-bottom: 1rem;
 		}
 		label {
 			display: block;
@@ -34,8 +36,7 @@
 			margin: 2rem auto;
 			padding: 1rem;
 			color: $color-medium-grey;
-			font-family: 'Open Sans',
-				sans-serif;
+			font-family: 'Open Sans', sans-serif;
 
 			font-size: 2rem;
 			font-weight: 400;
@@ -46,6 +47,7 @@
 			background-image: $color-main-gradient;
 			font-family: Monaco;
 			font-size: 16px;
+			margin: 2rem auto;
 			color: #000000;
 			padding: 1rem 3rem;
 			border-radius: 0.5rem;
