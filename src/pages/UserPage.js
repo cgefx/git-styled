@@ -43,6 +43,7 @@ const UserPage = props => {
 				{/* {error && error.active ? <Error error={error} /> : ( */}
 
 				{rateLimit && <RateLimit rateLimit={rateLimit} />}
+
 				<section className='section'>
 					<div className='flex-row'>
 						{userData && <UserInfo userData={userData} />}

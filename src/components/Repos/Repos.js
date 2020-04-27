@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Flipper, Flipped } from 'react-flip-toolkit';
+import languageColors from '../../utils/languageColors';
 import Octicon, {
 	Repo,
 	Star,
 	RepoForked,
 	TriangleDown,
 } from '@primer/octicons-react';
-import { Flipper, Flipped } from 'react-flip-toolkit';
-import languageColors from '../../utils/languageColors';
 
 const Repos = ({ repoData }) => {
 	const [topRepos, setTopRepos] = useState([]);
@@ -85,11 +85,11 @@ const Repos = ({ repoData }) => {
 
 			<Flipper
 				flipKey={topRepos}
-				spring='wobbly'
+				spring='veryGentle'
 				staggerConfig={{
 					default: {
-						stagger: 'reverse',
-						speed: 0.01,
+						reverse: false,
+						speed: 1,
 					},
 				}}
 			>
@@ -99,47 +99,49 @@ const Repos = ({ repoData }) => {
 							{topRepos.map(repo => (
 								<Flipped key={repo.id} flipId={repo.id} stagger>
 									<li>
-										<a
-											href={repo.html_url}
-											target='_blank'
-											rel='noopener noreferrer'
-											className='repo'
-										>
-											<div className='repo__top'>
-												<div className='repo__name'>
-													<div className='icon-wrapper'>
-														<Octicon icon={Repo} />
+										<Flipped inverseFlipId={repo.id} scale>
+											<a
+												href={repo.html_url}
+												target='_blank'
+												rel='noopener noreferrer'
+												className='repo'
+											>
+												<div className='repo__top'>
+													<div className='repo__name'>
+														<div className='icon-wrapper'>
+															<Octicon icon={Repo} />
+														</div>
+														<h3>{repo.name}</h3>
 													</div>
-													<h3>{repo.name}</h3>
+													<p>{repo.description}</p>
 												</div>
-												<p>{repo.description}</p>
-											</div>
-											<div className='repo__stats'>
-												<div className='repo__stats--left'>
-													<span>
-														<div
-															className='language'
-															style={{
-																backgroundColor:
-																	languageColors[repo.language],
-															}}
-														/>
-														{repo.language}
-													</span>
-													<span>
-														<Octicon icon={Star} />
-														{repo.stargazers_count}
-													</span>
-													<span>
-														<Octicon icon={RepoForked} />
-														{repo.forks}
-													</span>
+												<div className='repo__stats'>
+													<div className='repo__stats--left'>
+														<span>
+															<div
+																className='language'
+																style={{
+																	backgroundColor:
+																		languageColors[repo.language],
+																}}
+															/>
+															{repo.language}
+														</span>
+														<span>
+															<Octicon icon={Star} />
+															{repo.stargazers_count}
+														</span>
+														<span>
+															<Octicon icon={RepoForked} />
+															{repo.forks}
+														</span>
+													</div>
+													<div className='repo__stats--right'>
+														<span>{repo.size} KB </span>
+													</div>
 												</div>
-												<div className='repo__stats--right'>
-													<span>{repo.size} KB </span>
-												</div>
-											</div>
-										</a>
+											</a>
+										</Flipped>
 									</li>
 								</Flipped>
 							))}
