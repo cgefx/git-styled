@@ -23,14 +23,12 @@
 
 	&__header {
 		display: flex;
-		margin-bottom: 3rem;
 		align-self: start;
 
 		h2 {
 			font-size: 1.75rem;
 			padding-bottom: 0.5rem;
-			border-bottom: 1px dashed
-				$color-primary;
+			border-bottom: 1px dashed $color-primary;
 		}
 	}
 

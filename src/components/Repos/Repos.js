@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
-import languageColors from '../../utils/languageColors';
+import langColors from '../../utils/langColors';
 import Octicon, {
 	Repo,
 	Star,
@@ -122,7 +122,7 @@ const Repos = ({ repoData }) => {
 																className='language'
 																style={{
 																	backgroundColor:
-																		languageColors[repo.language],
+																		langColors[repo.language],
 																}}
 															/>
 															{repo.language}

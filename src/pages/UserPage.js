@@ -4,13 +4,15 @@ import UserInfo from '../components/UserInfo/UserInfo';
 import Charts from '../components/Charts/Charts';
 import Repos from '../components/Repos/Repos';
 import RateLimit from '../components/RateLimit/RateLimit';
-// import mockUserData from '../utils/mockUserData';
-// import mockRepoData from '../utils/mockRepoData';
+import GhPolyglot from 'gh-polyglot';
+
+// import { mockUserData, mockLangData, mockRepoData } from '../utils';
 
 const UserPage = props => {
 	const username = props.match.params.username;
 	const [userData, setUserData] = useState(null);
 	const [repoData, setRepoData] = useState(null);
+	const [langData, setLangData] = useState(null);
 	const [rateLimit, setRateLimit] = useState(null);
 	const [error, setError] = useState({ active: false, type: 200 });
 
@@ -31,6 +33,17 @@ const UserPage = props => {
 				setError({ active: true, type: 400 });
 				console.error('Error', error);
 			});
+	};
+
+	const getLangData = () => {
+		const me = new GhPolyglot(`${username}`);
+		me.userStats((err, stats) => {
+			if (err) {
+				console.err('Error:', err);
+				setError({ active: true, type: 400 });
+			}
+			setLangData(stats);
+		});
 	};
 
 	// Get user repo data from API
@@ -73,6 +86,7 @@ const UserPage = props => {
 		//  If no rate limit errors set data...
 		getUserData();
 		getRepoData();
+		getLangData();
 
 		// setUserData(mockUserData);
 		// setRepoData(mockRepoData);
@@ -89,7 +103,9 @@ const UserPage = props => {
 					<section className='section'>
 						<div className='flex-row'>
 							{userData && <UserInfo userData={userData} />}
-							<Charts />
+							{langData && repoData && (
+								<Charts langData={langData} repoData={repoData} />
+							)}
 						</div>
 					</section>
 
