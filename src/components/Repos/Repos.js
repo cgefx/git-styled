@@ -65,7 +65,12 @@ const Repos = ({ repoData }) => {
 							onClick={() => toggleDropdown()}
 						>
 							<label>{sortType}</label>
-							<Octicon icon={TriangleDown} />
+							<div
+								className='dropdown__icon'
+								style={{ transform: dropdownOpen ? 'rotate(0.5turn)' : null }}
+							>
+								<Octicon icon={TriangleDown} />
+							</div>
 						</button>
 
 						{dropdownOpen && (
