@@ -13,7 +13,7 @@ const Repos = ({ repoData }) => {
 	const [dropdownOpen, setDropdown] = useState(false);
 	const [sortType, setSortType] = useState('stars');
 
-	const getTopRepos = type => {
+	const getTopRepos = (type) => {
 		const LIMIT = 8;
 
 		const map = {
@@ -25,7 +25,7 @@ const Repos = ({ repoData }) => {
 		const sortProperty = map[type];
 
 		const sorted = repoData
-			.filter(repo => !repo.fork)
+			.filter((repo) => !repo.fork)
 			.sort((a, b) =>
 				sortProperty === 'pushed_at'
 					? Date.parse(b[sortProperty]) - Date.parse(a[sortProperty])
@@ -46,7 +46,7 @@ const Repos = ({ repoData }) => {
 
 	const toggleDropdown = () => setDropdown(!dropdownOpen);
 
-	const changeRepoSort = sortType => {
+	const changeRepoSort = (sortType) => {
 		setSortType(sortType);
 		toggleDropdown();
 	};
@@ -72,9 +72,7 @@ const Repos = ({ repoData }) => {
 							<ul className='dropdown__list'>
 								{sortTypes.map((type, index) => (
 									<li className='dropdown__list-item' key={index}>
-										<button onClick={() => changeRepoSort(type)}>
-											{type}
-										</button>
+										<button onClick={() => changeRepoSort(type)}>{type}</button>
 									</li>
 								))}
 							</ul>
@@ -96,7 +94,7 @@ const Repos = ({ repoData }) => {
 				<div className='repo-list'>
 					{topRepos.length > 0 ? (
 						<ul>
-							{topRepos.map(repo => (
+							{topRepos.map((repo) => (
 								<Flipped key={repo.id} flipId={repo.id} stagger>
 									<li>
 										<Flipped inverseFlipId={repo.id} scale>
@@ -121,8 +119,7 @@ const Repos = ({ repoData }) => {
 															<div
 																className='language'
 																style={{
-																	backgroundColor:
-																		langColors[repo.language],
+																	backgroundColor: langColors[repo.language],
 																}}
 															/>
 															{repo.language}
