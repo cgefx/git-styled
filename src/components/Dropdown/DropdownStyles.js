@@ -1,21 +1,21 @@
-.dropdown-wrapper {
+import styled from 'styled-components';
+
+export const DropdownWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	font-size: 1rem;
-
-	.label {
+	span {
 		margin: 0 1rem;
 	}
-}
+`;
 
-.dropdown {
+export const StyledDropdown = styled.div`
 	position: relative;
-	// display: flex;
 	width: 100px;
 	font-size: 14px;
 	font-weight: 500;
 
-	&__button {
+	button {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -26,33 +26,33 @@
 		text-align: left;
 		color: $color-primary;
 		background-color: transparent;
-		border: 1px solid $color-primary;
+		border: 1px solid ${({ theme }) => theme.primary};
 		padding: 10px 10px;
 		border-radius: 5px;
 
 		&:hover,
 		&:focus {
-			color: $color-primary;
-			background: $color-light-blue;
-			border-color: $color-light-blue;
+			color: ${({ theme }) => theme.primary};
+			background: ${({ theme }) => theme.secondary};
+			border-color: ${({ theme }) => theme.secondary};
 		}
 
 		label {
-			transition: $transition-main;
+			transition: var(--transition-main);
 			cursor: pointer;
 		}
 	}
 
-	&__list {
+	ul {
 		position: absolute;
 		overflow: hidden;
 		width: 100%;
 		z-index: 2;
-		transition: $transition-main;
-		box-shadow: $box-shadow-low;
+		transition: var(--transition-main);
+		box-shadow: var(--shadow-low);
 		opacity: 1;
-		// visibility: visible;
-		// background-color: $color-white;
+		/* // visibility: visible;
+		// background-color: $color-white; */
 
 		&:active {
 			opacity: 1;
@@ -60,12 +60,12 @@
 		}
 	}
 
-	&__list-item {
+	li {
 		border-radius: 0;
-		transition: $transition-main;
+		transition: var(--transition-main);
 		&:hover,
 		&:focus {
-			background-color: $color-light-grey;
+			background-color: ${({ theme }) => theme.textSecondary};
 		}
 		&:first-of-type {
 			button {
@@ -80,8 +80,8 @@
 			}
 		}
 		button {
-			color: $color-primary;
-			background: $color-light-blue;
+			color: ${({ theme }) => theme.primary};
+			background: ${({ theme }) => theme.secondary};
 			padding: 10px 7px;
 			width: 100%;
 			font-size: 14px;
@@ -90,4 +90,4 @@
 			text-align: left;
 		}
 	}
-}
+`;

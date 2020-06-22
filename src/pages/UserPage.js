@@ -1,68 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import UserInfo from '../components/UserInfo/UserInfo';
-import Charts from '../components/Charts/Charts';
 import Repos from '../components/Repos/Repos';
 import RateLimit from '../components/RateLimit/RateLimit';
-import GhPolyglot from 'gh-polyglot';
+import Error from '../components/Error/Error';
 
-// import { mockUserData, mockLangData, mockRepoData } from '../utils';
-
-const UserPage = props => {
+const UserPage = (props) => {
 	const username = props.match.params.username;
 	const [userData, setUserData] = useState(null);
 	const [repoData, setRepoData] = useState(null);
-	const [langData, setLangData] = useState(null);
 	const [rateLimit, setRateLimit] = useState(null);
 	const [error, setError] = useState({ active: false, type: 200 });
 
 	// Get user data from API
 	const getUserData = () => {
 		fetch(`https://api.github.com/users/${username}`)
-			.then(response => {
+			.then((response) => {
 				if (response.status === 404) {
-					console.log('404 error');
+					return setError({ active: true, type: 404 });
 				}
 				if (response.status === 403) {
-					console.log('403 error');
+					return setError({ active: true, type: 403 });
 				}
 				return response.json();
 			})
-			.then(json => setUserData(json))
-			.catch(error => {
+			.then((json) => setUserData(json))
+			.catch((error) => {
 				setError({ active: true, type: 400 });
 				console.error('Error', error);
 			});
 	};
 
-	const getLangData = () => {
-		const me = new GhPolyglot(`${username}`);
-		me.userStats((err, stats) => {
-			if (err) {
-				console.err('Error:', err);
-				setError({ active: true, type: 400 });
-			}
-			setLangData(stats);
-		});
-	};
-
 	// Get user repo data from API
 	const getRepoData = () => {
-		fetch(
-			`https://api.github.com/users/${username}/repos?per_page=100`,
-		)
-			.then(response => {
+		fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
+			.then((response) => {
 				if (response.status === 404) {
-					console.log('404 error');
+					return setError({ active: true, type: 404 });
 				}
 				if (response.status === 403) {
-					console.log('403 error');
+					return setError({ active: true, type: 403 });
 				}
 				return response.json();
 			})
-			.then(json => setRepoData(json))
-			.catch(error => {
-				setError({ active: true, type: 400 });
+			.then((json) => setRepoData(json))
+			.catch((error) => {
+				setError({ active: true, type: 200 });
 				console.error('Error', error);
 			});
 	};
@@ -72,8 +55,8 @@ const UserPage = props => {
 		fetch(
 			'https://cors-anywhere.herokuapp.com/https://api.github.com/rate_limit',
 		)
-			.then(response => response.json())
-			.then(json => {
+			.then((response) => response.json())
+			.then((json) => {
 				setRateLimit(json.resources.core);
 				if (json.resources.core.remaining < 1) {
 					setError({
@@ -86,11 +69,6 @@ const UserPage = props => {
 		//  If no rate limit errors set data...
 		getUserData();
 		getRepoData();
-		getLangData();
-
-		// setUserData(mockUserData);
-		// setRepoData(mockRepoData);
-		// setLangData(mockLangData);
 	}, []);
 
 	return (
@@ -99,20 +77,19 @@ const UserPage = props => {
 			<main>
 				{rateLimit && <RateLimit rateLimit={rateLimit} />}
 
-				<>
-					<section className='section'>
-						<div className='flex-row'>
+				{error && error.active ? (
+					<Error error={error} />
+				) : (
+					<>
+						<section className='section'>
 							{userData && <UserInfo userData={userData} />}
-							{langData && repoData && (
-								<Charts langData={langData} repoData={repoData} />
-							)}
-						</div>
-					</section>
+						</section>
 
-					<section className='section'>
-						{repoData && <Repos repoData={repoData} />}
-					</section>
-				</>
+						<section className='section'>
+							{repoData && <Repos repoData={repoData} />}
+						</section>
+					</>
+				)}
 			</main>
 		</>
 	);

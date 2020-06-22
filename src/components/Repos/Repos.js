@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
-import langColors from '../../utils/langColors';
+import { langColors } from '../../utils';
+import { ReposHeader, RepoGrid } from './RepoStyles';
 import Octicon, {
 	Repo,
 	Star,
@@ -54,8 +55,8 @@ const Repos = ({ repoData }) => {
 	const sortTypes = ['stars', 'updated', 'size'];
 
 	return (
-		<div className='repos'>
-			<header className='header'>
+		<div>
+			<ReposHeader>
 				<h2>Top Repos</h2>
 				<div className='dropdown-wrapper'>
 					<span className='label'>by</span>
@@ -84,7 +85,7 @@ const Repos = ({ repoData }) => {
 						)}
 					</div>
 				</div>
-			</header>
+			</ReposHeader>
 
 			<Flipper
 				flipKey={topRepos}
@@ -96,7 +97,7 @@ const Repos = ({ repoData }) => {
 					},
 				}}
 			>
-				<div className='repo-list'>
+				<RepoGrid>
 					{topRepos.length > 0 ? (
 						<ul>
 							{topRepos.map((repo) => (
@@ -151,7 +152,7 @@ const Repos = ({ repoData }) => {
 					) : (
 						<p>Looks like there aren't any repos to show</p>
 					)}
-				</div>
+				</RepoGrid>
 			</Flipper>
 		</div>
 	);
