@@ -2,7 +2,6 @@
   "name": "git-styled",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://cgefx.github.io/git-styled",
   "dependencies": {
     "@primer/octicons-react": "^9.6.0",
     "@testing-library/jest-dom": "^4.2.4",
