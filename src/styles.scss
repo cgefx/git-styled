@@ -72,8 +72,6 @@ $transition-main: all 0.2s ease-in-out;
 		transition: $transition-main;
 		box-shadow: $box-shadow-low;
 		opacity: 1;
-		// visibility: visible;
-		// background-color: $color-white;
 
 		&:active {
 			opacity: 1;
@@ -151,7 +149,6 @@ $transition-main: all 0.2s ease-in-out;
 
 	&__handle {
 		font-size: 1rem;
-		// margin-bottom: 1rem;
 		color: $color-primary;
 	}
 }
