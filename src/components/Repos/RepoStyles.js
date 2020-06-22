@@ -28,6 +28,7 @@ export const RepoGrid = styled.div`
 				flex-direction: column;
 				padding: 2rem;
 				height: 100%;
+				margin: 0 auto;
 				color: ${({ theme }) => theme.textSecondary};
 				background-color: ${({ theme }) => theme.backgroundMedium};
 				border-radius: var(--border-radius);
@@ -58,6 +59,7 @@ export const RepoGrid = styled.div`
 					svg {
 						margin-right: 0.5rem;
 						min-width: 16px;
+						color: ${({ theme }) => theme.primary};
 					}
 					h3 {
 						margin: 0;

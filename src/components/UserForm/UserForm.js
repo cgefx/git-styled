@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Octicon, { MarkGithub } from '@primer/octicons-react';
-import UserFormStyles from './UserFormStyles';
+import { UserFormStyles, FormContainer } from './UserFormStyles';
 
 const UserForm = () => {
 	const [username, setUsername] = useState('');
@@ -14,29 +14,26 @@ const UserForm = () => {
 	};
 
 	return (
-		<UserFormStyles>
-			<div className='icon-wrapper'>
+		<FormContainer>
+			<UserFormStyles>
 				<Octicon icon={MarkGithub} size='large' />
-			</div>
+				<form onSubmit={handleSubmit}>
+					<label htmlFor='username'>
+						Get a styled version of your Github profile...
+					</label>
 
-			<form className='user-form__form' onSubmit={handleSubmit}>
-				<label htmlFor='username'>
-					Get a styled version of your Github profile...
-				</label>
+					<input
+						type='text'
+						id='username'
+						value={username}
+						placeholder='Type a username...'
+						onChange={handleChange}
+					/>
 
-				<input
-					type='text'
-					id='username'
-					value={username}
-					placeholder='type a username...'
-					onChange={handleChange}
-				/>
-
-				<button className='user-form__button' type='submit'>
-					Git Styled!
-				</button>
-			</form>
-		</UserFormStyles>
+					<button disabled={username.length === 0}>Git Styled!</button>
+				</form>
+			</UserFormStyles>
+		</FormContainer>
 	);
 };
 

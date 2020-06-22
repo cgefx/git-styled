@@ -6,7 +6,7 @@ const StyledContainer = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	padding: 0.5rem;
-	margin-right: 5rem;
+	margin-right: 2.4rem;
 	font-size: 0.75rem;
 `;
 

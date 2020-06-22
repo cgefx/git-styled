@@ -6,7 +6,7 @@ const StyledNav = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0.7rem 5rem;
+	padding: 0.7rem 2.4rem;
 	margin-bottom: 0.5rem;
 	width: 100%;
 	border-bottom: solid 1px ${({ theme }) => theme.primary};
@@ -35,7 +35,7 @@ const StyledNav = styled.nav`
 const Navbar = () => {
 	return (
 		<StyledNav>
-			<h1 className='navbar__title'>
+			<h1>
 				<Link to='/'>gitStyled</Link>
 			</h1>
 			<ul>

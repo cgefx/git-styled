@@ -3,8 +3,7 @@ import Navbar from '../components/Navbar/Navbar';
 import UserInfo from '../components/UserInfo/UserInfo';
 import Repos from '../components/Repos/Repos';
 import RateLimit from '../components/RateLimit/RateLimit';
-
-// import { mockUserData, mockLangData, mockRepoData } from '../utils';
+import Error from '../components/Error/Error';
 
 const UserPage = (props) => {
 	const username = props.match.params.username;
@@ -18,10 +17,10 @@ const UserPage = (props) => {
 		fetch(`https://api.github.com/users/${username}`)
 			.then((response) => {
 				if (response.status === 404) {
-					console.log('404 error');
+					return setError({ active: true, type: 404 });
 				}
 				if (response.status === 403) {
-					console.log('403 error');
+					return setError({ active: true, type: 403 });
 				}
 				return response.json();
 			})
@@ -37,16 +36,16 @@ const UserPage = (props) => {
 		fetch(`https://api.github.com/users/${username}/repos?per_page=100`)
 			.then((response) => {
 				if (response.status === 404) {
-					console.log('404 error');
+					return setError({ active: true, type: 404 });
 				}
 				if (response.status === 403) {
-					console.log('403 error');
+					return setError({ active: true, type: 403 });
 				}
 				return response.json();
 			})
 			.then((json) => setRepoData(json))
 			.catch((error) => {
-				setError({ active: true, type: 400 });
+				setError({ active: true, type: 200 });
 				console.error('Error', error);
 			});
 	};
@@ -78,17 +77,19 @@ const UserPage = (props) => {
 			<main>
 				{rateLimit && <RateLimit rateLimit={rateLimit} />}
 
-				<>
-					<section className='section'>
-						<div className='flex-row'>
+				{error && error.active ? (
+					<Error error={error} />
+				) : (
+					<>
+						<section className='section'>
 							{userData && <UserInfo userData={userData} />}
-						</div>
-					</section>
+						</section>
 
-					<section className='section'>
-						{repoData && <Repos repoData={repoData} />}
-					</section>
-				</>
+						<section className='section'>
+							{repoData && <Repos repoData={repoData} />}
+						</section>
+					</>
+				)}
 			</main>
 		</>
 	);

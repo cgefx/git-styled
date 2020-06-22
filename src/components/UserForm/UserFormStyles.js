@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const UserFormStyles = styled.div`
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 2rem;
+	margin: 3.2rem auto;
+	padding: 2.4rem;
+	max-width: 60rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -15,18 +13,20 @@ export const UserFormStyles = styled.div`
 	border-radius: var(--border-radius);
 	box-shadow: var(shadow-low);
 
+	svg {
+		color: ${({ theme }) => theme.primary};
+	}
+
 	form {
 		background-color: transparent;
 		text-align: center;
-		svg {
-			color: ${({ theme }) => theme.primary};
-			margin-bottom: 1rem;
-		}
+
 		label {
 			display: block;
-			font-size: 1rem;
+			font-size: 1.4rem;
+			padding: 2.4rem 4rem;
 			font-weight: 500;
-			margin: 2rem;
+			color: ${({ theme }) => theme.textSecondary};
 		}
 		input {
 			background-color: ${({ theme }) => theme.backgroundDark};
@@ -39,7 +39,7 @@ export const UserFormStyles = styled.div`
 			padding: 1rem;
 			color: ${({ theme }) => theme.textSecondary};
 			font-family: 'Open Sans', sans-serif;
-			font-size: 2rem;
+			font-size: 1.6rem;
 			font-weight: 400;
 			text-align: center;
 		}
@@ -49,11 +49,10 @@ export const UserFormStyles = styled.div`
 			font-family: Monaco;
 			font-size: 16px;
 			margin: 2rem auto;
-			color: #000000;
 			padding: 1rem 3rem;
 			border-radius: 0.5rem;
 		}
 	}
 `;
 
-export default UserFormStyles;
+export const FormContainer = styled.div``;

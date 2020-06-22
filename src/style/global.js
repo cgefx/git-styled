@@ -74,10 +74,6 @@ svg {
 	fill: currentColor;
 }
 
-.icon-wrapper {
-	color: ${({ theme }) => theme.primary};
-}
-
 button {
 	cursor: pointer;
 	border: 0;
@@ -105,20 +101,16 @@ input {
 }
 
 .section {
-	padding: 3rem 5rem;
+	padding: 3rem 2.4rem;
+  margin: 0 auto;
 
 	& > div {
-		max-width: 1400px;
+		max-width: 1110px;
 		margin: 0 auto;
 	}
 
-	&:not(:first-of-type) {
-		padding: 4rem 5rem;
-	}
+
 }
 
-.flex-row {
-	display: flex;
-	justify-content: space-between;
-}
+
 `;

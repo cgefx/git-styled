@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
-import langColors from '../../utils/langColors';
+import { langColors } from '../../utils';
 import { ReposHeader, RepoGrid } from './RepoStyles';
 import Octicon, {
 	Repo,
