@@ -1,4 +1,6 @@
-.user-form {
+import styled from 'styled-components';
+
+export const UserFormStyles = styled.div`
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -9,15 +11,15 @@
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	background-color: $color-dark-grey;
-	border-radius: $border-radius;
-	box-shadow: $box-shadow-low;
+	background-color: ${({ theme }) => theme.backgroundMedium};
+	border-radius: var(--border-radius);
+	box-shadow: var(shadow-low);
 
 	form {
 		background-color: transparent;
 		text-align: center;
 		svg {
-			color: $color-primary;
+			color: ${({ theme }) => theme.primary};
 			margin-bottom: 1rem;
 		}
 		label {
@@ -27,7 +29,7 @@
 			margin: 2rem;
 		}
 		input {
-			background-color: $color-dark-blue;
+			background-color: ${({ theme }) => theme.backgroundDark};
 			outline: 0;
 			border: 0;
 			border-radius: 0.25rem;
@@ -35,16 +37,15 @@
 			max-width: 500px;
 			margin: 2rem auto;
 			padding: 1rem;
-			color: $color-medium-grey;
+			color: ${({ theme }) => theme.textSecondary};
 			font-family: 'Open Sans', sans-serif;
-
 			font-size: 2rem;
 			font-weight: 400;
 			text-align: center;
 		}
 
 		button {
-			background-image: $color-main-gradient;
+			background-image: ${({ theme }) => theme.gradient};
 			font-family: Monaco;
 			font-size: 16px;
 			margin: 2rem auto;
@@ -53,4 +54,6 @@
 			border-radius: 0.5rem;
 		}
 	}
-}
+`;
+
+export default UserFormStyles;

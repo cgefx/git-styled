@@ -1,19 +1,19 @@
-.repos {
-	.header {
-		display: flex;
-		align-items: center;
-		margin-bottom: 2rem;
+import styled from 'styled-components';
 
-		h2 {
-			font-size: 1.75rem;
-			margin: 0;
-			padding-bottom: 0.5rem;
-			border-bottom: 1px dashed $color-primary;
-		}
+export const ReposHeader = styled.header`
+	display: flex;
+	align-items: center;
+	margin-bottom: 2rem;
+
+	h2 {
+		font-size: 1.75rem;
+		margin: 0;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px dashed ${({ theme }) => theme.primary};
 	}
-}
+`;
 
-.repo-list {
+export const RepoGrid = styled.div`
 	margin: 0 auto;
 	padding: 0;
 	ul {
@@ -28,19 +28,19 @@
 				flex-direction: column;
 				padding: 2rem;
 				height: 100%;
-				color: $color-medium-grey;
-				background-color: $color-dark-grey;
-				border-radius: $border-radius;
-				box-shadow: $box-shadow-low;
+				color: ${({ theme }) => theme.textSecondary};
+				background-color: ${({ theme }) => theme.backgroundMedium};
+				border-radius: var(--border-radius);
+				box-shadow: var(--shadow-low);
 				transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
 
 				&:hover,
 				&:focus {
-					box-shadow: $box-shadow-hover;
+					box-shadow: var(--shadow-hover);
 				}
 
 				h3 {
-					color: $color-white;
+					color: ${({ theme }) => theme.textPrimary};
 					margin-bottom: 0.75rem;
 					font-size: 20px;
 					letter-spacing: -0.5px;
@@ -67,7 +67,7 @@
 					display: flex;
 					justify-content: space-between;
 					font-size: 13px;
-					color: $color-light-grey;
+					color: ${({ theme }) => theme.textSecondary};
 
 					&--left {
 						flex-grow: 1;
@@ -93,4 +93,4 @@
 			}
 		}
 	}
-}
+`;
