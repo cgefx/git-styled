@@ -6,7 +6,7 @@ import HomePage from './pages/HomePage';
 import UserPage from './pages/UserPage';
 import AboutPage from './pages/AboutPage';
 
-import './styles/styles.scss';
+import './styles.scss';
 
 function App() {
 	return (
