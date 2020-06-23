@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import { langColors } from '../utils';
 import { ReposHeader, RepoGrid } from './styles/RepoStyles';
+import { DropdownStyles } from './styles/DropdownStyles';
 import Octicon, {
 	Repo,
 	Star,
@@ -54,7 +55,7 @@ const Repos = ({ repoData }) => {
 		<div>
 			<ReposHeader>
 				<h2>Top Repos</h2>
-				<div className='dropdown-wrapper'>
+				<DropdownStyles>
 					<span className='label'>by</span>
 					<div className='dropdown'>
 						<button
@@ -80,7 +81,7 @@ const Repos = ({ repoData }) => {
 							</ul>
 						)}
 					</div>
-				</div>
+				</DropdownStyles>
 			</ReposHeader>
 
 			<Flipper
