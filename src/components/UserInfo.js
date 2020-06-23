@@ -1,80 +1,77 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Octicon, { Calendar, Location } from '@primer/octicons-react';
+import {
+	UserInfoStyles,
+	UserAvatar,
+	UserName,
+	UserHandle,
+	UserDetails,
+	UserStats,
+} from './styles/UserInfoStyles';
 
 const UserInfo = ({ userData }) => (
 	<>
 		{userData && (
-			<div className='user-info'>
+			<UserInfoStyles>
 				{userData.avatar_url && (
-					<div className='user-info__avatar'>
+					<UserAvatar>
 						<img src={userData.avatar_url} alt='avatar' />
-					</div>
+					</UserAvatar>
 				)}
 
-				{userData.name && (
-					<div className='user-info__name'>
-						<h1>{userData.name}</h1>
-					</div>
-				)}
+				{userData.name && <UserName>{userData.name}</UserName>}
 
 				{userData.login && (
-					<div className='user-info__handle'>
-						<h2>
-							<a
-								href={userData.html_url}
-								target='_blank'
-								rel='noopener noreferrer'
-							>
-								@{userData.login}
-							</a>
-						</h2>
-					</div>
+					<UserHandle>
+						<a
+							href={userData.html_url}
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							@{userData.login}
+						</a>
+					</UserHandle>
 				)}
 
-				<div className='info'>
+				<UserDetails>
 					{userData.location && (
-						<span className='info__item'>
+						<span>
 							<Octicon icon={Location} size='small' />
 							{userData.location}
 						</span>
 					)}
 
 					{userData.created_at && (
-						<span className='info__item'>
+						<span>
 							<Octicon icon={Calendar} size='small' />
 							Joined{' '}
-							{new Date(userData.created_at).toLocaleDateString(
-								'en-US',
-								{
-									month: 'long',
-									day: 'numeric',
-									year: 'numeric',
-								},
-							)}
+							{new Date(userData.created_at).toLocaleDateString('en-US', {
+								month: 'long',
+								day: 'numeric',
+								year: 'numeric',
+							})}
 						</span>
 					)}
-				</div>
+				</UserDetails>
 
-				<div className='stats'>
-					<div className='stats__item'>
-						<span className='num'>
-							{userData.public_repos.toString()}
-						</span>
+				<UserStats>
+					<div className='stats-item'>
+						<span className='num'>{userData.public_repos.toString()}</span>
 						<span className='num-label'>Repositories</span>
 					</div>
 
-					<div className='stats__item'>
+					<div className='stats-item'>
 						<span className='num'>{userData.followers}</span>
 						<span className='num-label'>Followers</span>
 					</div>
 
-					<div className='stats__item'>
+					<div className='stats-item'>
 						<span className='num'>{userData.following}</span>
 						<span className='num-label'>Following</span>
 					</div>
-				</div>
-			</div>
+				</UserStats>
+			</UserInfoStyles>
 		)}
 	</>
 );

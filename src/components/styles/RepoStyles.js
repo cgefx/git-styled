@@ -43,7 +43,7 @@ const RepoGrid = styled.div`
 				h3 {
 					color: ${({ theme }) => theme.textPrimary};
 					margin-bottom: 0.75rem;
-					font-size: 1.8rem;
+					font-size: 1.6rem;
 					letter-spacing: -0.5px;
 				}
 				p {
