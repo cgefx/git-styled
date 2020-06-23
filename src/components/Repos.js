@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
-import { langColors } from '../../utils';
-import { ReposHeader, RepoGrid } from './RepoStyles';
+import { langColors } from '../utils';
+import { ReposHeader, RepoGrid } from './styles/RepoStyles';
 import Octicon, {
 	Repo,
 	Star,
@@ -14,36 +14,32 @@ const Repos = ({ repoData }) => {
 	const [dropdownOpen, setDropdown] = useState(false);
 	const [sortType, setSortType] = useState('stars');
 
-	const getTopRepos = (type) => {
-		const LIMIT = 8;
+	useEffect(() => {
+		const getTopRepos = (type) => {
+			const LIMIT = 8;
 
-		const map = {
-			stars: 'stargazers_count',
-			updated: 'pushed_at',
-			size: 'size',
+			const map = {
+				stars: 'stargazers_count',
+				updated: 'pushed_at',
+				size: 'size',
+			};
+
+			const sortProperty = map[type];
+
+			const sorted = repoData
+				.filter((repo) => !repo.fork)
+				.sort((a, b) =>
+					sortProperty === 'pushed_at'
+						? Date.parse(b[sortProperty]) - Date.parse(a[sortProperty])
+						: b[sortProperty] - a[sortProperty],
+				)
+				.slice(0, LIMIT);
+
+			setTopRepos(sorted);
 		};
 
-		const sortProperty = map[type];
-
-		const sorted = repoData
-			.filter((repo) => !repo.fork)
-			.sort((a, b) =>
-				sortProperty === 'pushed_at'
-					? Date.parse(b[sortProperty]) - Date.parse(a[sortProperty])
-					: b[sortProperty] - a[sortProperty],
-			)
-			.slice(0, LIMIT);
-
-		setTopRepos(sorted);
-	};
-
-	useEffect(() => {
-		if (repoData.length) {
-			getTopRepos();
-		}
-	}, []);
-
-	useEffect(() => getTopRepos(sortType), [sortType]);
+		getTopRepos(sortType);
+	}, [repoData, sortType]);
 
 	const toggleDropdown = () => setDropdown(!dropdownOpen);
 

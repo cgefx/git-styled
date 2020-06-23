@@ -1,6 +1,5 @@
 import React from 'react';
-import Navbar from '../components/Navbar/Navbar';
-import UserForm from '../components/UserForm/UserForm';
+import { UserForm, Navbar } from '../components';
 
 const HomePage = () => {
 	return (

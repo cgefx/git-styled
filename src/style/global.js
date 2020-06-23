@@ -111,6 +111,7 @@ export const GlobalStyle = createGlobalStyle`
   .section {
     padding: 3rem 2.4rem;
     margin: 0 auto;
+    position: relative;
 
     & > div {
       max-width: 1110px;
