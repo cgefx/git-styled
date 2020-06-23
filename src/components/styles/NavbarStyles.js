@@ -1,8 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledNav = styled.nav`
+const NavbarStyles = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -32,19 +30,4 @@ const StyledNav = styled.nav`
 	}
 `;
 
-const Navbar = () => {
-	return (
-		<StyledNav>
-			<h1>
-				<Link to='/'>gitStyled</Link>
-			</h1>
-			<ul>
-				<li>
-					<Link to='/about'>About</Link>
-				</li>
-			</ul>
-		</StyledNav>
-	);
-};
-
-export default Navbar;
+export default NavbarStyles;

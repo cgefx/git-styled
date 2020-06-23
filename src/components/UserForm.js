@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Octicon, { MarkGithub } from '@primer/octicons-react';
-import { UserFormStyles, FormContainer } from './UserFormStyles';
+import { UserFormStyles, FormContainer } from './styles/UserFormStyles';
 
 const UserForm = () => {
 	const [username, setUsername] = useState('');

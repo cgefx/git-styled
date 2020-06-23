@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const UserFormStyles = styled.div`
+const UserFormStyles = styled.div`
 	margin: 3.2rem auto;
 	padding: 2.4rem;
 	max-width: 60rem;
@@ -55,4 +55,6 @@ export const UserFormStyles = styled.div`
 	}
 `;
 
-export const FormContainer = styled.div``;
+const FormContainer = styled.div``;
+
+export { UserFormStyles, FormContainer };

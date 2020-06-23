@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ReposHeader = styled.header`
+const ReposHeader = styled.header`
 	display: flex;
 	align-items: center;
 	margin-bottom: 2rem;
@@ -13,7 +13,7 @@ export const ReposHeader = styled.header`
 	}
 `;
 
-export const RepoGrid = styled.div`
+const RepoGrid = styled.div`
 	margin: 0 auto;
 	padding: 0;
 	ul {
@@ -43,12 +43,13 @@ export const RepoGrid = styled.div`
 				h3 {
 					color: ${({ theme }) => theme.textPrimary};
 					margin-bottom: 0.75rem;
-					font-size: 20px;
+					font-size: 1.6rem;
 					letter-spacing: -0.5px;
 				}
 				p {
-					font-size: 14px;
+					font-size: 1.2rem;
 					margin-bottom: 2rem;
+					color: ${({ theme }) => theme.textSecondary};
 				}
 				&__header {
 					margin-bottom: 2rem;
@@ -56,6 +57,7 @@ export const RepoGrid = styled.div`
 				&__name {
 					display: flex;
 					align-items: center;
+					margin-bottom: 0.5rem;
 					svg {
 						margin-right: 0.5rem;
 						min-width: 16px;
@@ -96,3 +98,5 @@ export const RepoGrid = styled.div`
 		}
 	}
 `;
+
+export { ReposHeader, RepoGrid };
