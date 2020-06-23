@@ -29,12 +29,12 @@ export const UserAvatar = styled.div`
 	}
 `;
 export const UserName = styled.h1`
-	font-size: 2rem;
+	font-size: 2.2rem;
 	margin-bottom: 0rem;
 `;
 
 export const UserHandle = styled.h2`
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 	color: ${({ theme }) => theme.primary};
 `;
 
@@ -42,7 +42,7 @@ export const UserDetails = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 1.4rem;
+	font-size: 1.2rem;
 	span {
 		display: flex;
 		justify-content: center;
