@@ -1,16 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import NavbarStyles from './styles/NavbarStyles';
 
 const Navbar = () => {
 	return (
 		<NavbarStyles>
-			<h1>
-				<Link to='/'>gitStyled</Link>
-			</h1>
+			<NavLink to='/'>
+				<h1>gitStyled</h1>
+			</NavLink>
+
 			<ul>
 				<li>
-					<Link to='/about'>About</Link>
+					<a
+						href='https://github.com/cgefx/git-styled'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						Github
+					</a>
 				</li>
 			</ul>
 		</NavbarStyles>

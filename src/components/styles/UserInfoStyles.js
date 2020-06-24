@@ -58,7 +58,7 @@ export const UserDetails = styled.div`
 
 export const UserStats = styled.div`
 	display: grid;
-	grid-template-columns: repeat(3, minmax(100px, 150px));
+	grid-template-columns: repeat(3, minmax(10rem, 15rem));
 	gap: 0.5rem;
 	justify-content: center;
 	margin-top: 2rem;

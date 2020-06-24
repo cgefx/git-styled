@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const UserFormStyles = styled.div`
-	margin: 3.2rem auto;
-	padding: 2.4rem;
+	margin: 6rem auto;
+	padding: 3.2rem 2.4rem;
 	max-width: 60rem;
 	display: flex;
 	flex-direction: column;
@@ -51,6 +51,23 @@ const UserFormStyles = styled.div`
 			margin: 2rem auto;
 			padding: 1rem 3rem;
 			border-radius: 0.5rem;
+
+			&:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 1rem 2rem rgba(var(--color-black), 0.2);
+
+				&::after {
+					transform: scaleX(1.4) scaleY(1.6);
+					opacity: 0;
+				}
+			}
+
+			&:active,
+			&:focus {
+				outline: none;
+				transform: translateY(-1px);
+				box-shadow: 0 0.5rem 1rem rgba(var(--color-black), 0.2);
+			}
 		}
 	}
 `;

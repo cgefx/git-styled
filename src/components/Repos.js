@@ -56,7 +56,7 @@ const Repos = ({ repoData }) => {
 			<ReposHeader>
 				<h2>Top Repos</h2>
 				<DropdownStyles>
-					<span className='label'>by</span>
+					<span>by</span>
 					<div className='dropdown'>
 						<button
 							className='dropdown__button'
@@ -109,9 +109,7 @@ const Repos = ({ repoData }) => {
 											>
 												<div className='repo__top'>
 													<div className='repo__name'>
-														<div className='icon-wrapper'>
-															<Octicon icon={Repo} />
-														</div>
+														<Octicon icon={Repo} />
 														<h3>{repo.name}</h3>
 													</div>
 													<p>{repo.description}</p>
