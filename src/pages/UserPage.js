@@ -1,4 +1,5 @@
 import React from 'react';
+import useGithub from '../hooks/useGitHub';
 import {
 	Navbar,
 	UserInfo,
@@ -7,13 +8,6 @@ import {
 	Error,
 	Loading,
 } from '../components';
-// import Navbar from '../components/Navbar';
-// import UserInfo from '../components/UserInfo';
-// import Repos from '../components/Repos';
-// import RateLimit from '../components/RateLimit';
-// import Error from '../components/Error';
-// import Loading from '../components/Loading';
-import useGithub from '../hooks/useGitHub';
 
 const UserPage = ({ match }) => {
 	const username = match.params.username;

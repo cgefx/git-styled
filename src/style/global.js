@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --border-radius-small: 0.25rem;
     --border-radius: 8px;
+    --color-black: #000;
     --transition-main: all 0.2s ease-in-out;
     --shadow-high: 0 5px 30px -15px rgba(0, 0, 0, 0.2);
 	  --shadow-low: 0 10px 30px -15px rgba(0, 0, 0, 0.2);
@@ -109,7 +110,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .section {
-    padding: 3rem 2.4rem;
+    padding: 3rem 2rem;
     margin: 0 auto;
     position: relative;
 

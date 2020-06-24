@@ -5,14 +5,14 @@ export const DropdownStyles = styled.div`
 	align-items: center;
 	font-size: 1rem;
 
-	.label {
+	span {
 		margin: 0 1rem;
 	}
 
 	.dropdown {
 		position: relative;
 		width: 100px;
-		font-size: 14px;
+		font-size: 1.4rem;
 		font-weight: 500;
 
 		&__button {
@@ -20,14 +20,14 @@ export const DropdownStyles = styled.div`
 			justify-content: space-between;
 			align-items: center;
 			width: 100%;
-			font-size: 14px;
+			font-size: 1.4rem;
 			font-weight: 500;
 			line-height: 1;
 			text-align: left;
 			color: ${({ theme }) => theme.primary};
 			background-color: transparent;
 			border: 1px solid ${({ theme }) => theme.primary};
-			padding: 10px 10px;
+			padding: 0.8rem;
 			border-radius: 5px;
 
 			&:hover,

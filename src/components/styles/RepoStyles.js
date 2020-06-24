@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const ReposHeader = styled.header`
 	display: flex;
 	align-items: center;
-	margin-bottom: 2rem;
+	margin-bottom: 2.2rem;
 
 	h2 {
 		font-size: 1.75rem;
@@ -19,7 +19,7 @@ const RepoGrid = styled.div`
 	ul {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		grid-gap: 1rem;
+		grid-gap: 1.6rem;
 
 		li {
 			.repo {
@@ -42,7 +42,7 @@ const RepoGrid = styled.div`
 
 				h3 {
 					color: ${({ theme }) => theme.textPrimary};
-					margin-bottom: 0.75rem;
+
 					font-size: 1.6rem;
 					letter-spacing: -0.5px;
 				}
@@ -59,8 +59,8 @@ const RepoGrid = styled.div`
 					align-items: center;
 					margin-bottom: 0.5rem;
 					svg {
-						margin-right: 0.5rem;
-						min-width: 16px;
+						margin-right: 0.8rem;
+						min-width: 1.6rem;
 						color: ${({ theme }) => theme.primary};
 					}
 					h3 {

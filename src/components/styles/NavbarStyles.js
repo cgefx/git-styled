@@ -4,22 +4,31 @@ const NavbarStyles = styled.nav`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0.7rem 2.4rem;
+	padding: 1.4rem 2.4rem;
 	margin-bottom: 0.5rem;
 	width: 100%;
 	border-bottom: solid 1px ${({ theme }) => theme.primary};
-	opacity: 0.9;
+	background: transparent;
 
 	h1 {
-		font-size: 2rem;
+		color: ${({ theme }) => theme.textPrimary};
+		font-size: 2.4rem;
+
+		&:hover {
+			color: ${({ theme }) => theme.primary};
+		}
 	}
 
 	ul {
 		display: flex;
+
+		li {
+			font-size: 1.4rem;
+		}
 	}
 
 	a {
-		color: #fff;
+		color: ${({ theme }) => theme.textSecondary};
 		padding: 0.45rem;
 		margin: 0 0.25rem;
 		font-family: 'Space Mono';
