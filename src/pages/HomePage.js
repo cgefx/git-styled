@@ -1,17 +1,17 @@
-import React from 'react';
-import { UserForm, Navbar } from '../components';
+import React from 'react'
+import { UserForm, Navbar } from '../components'
 
 const HomePage = () => {
-	return (
-		<>
-			<Navbar />
-			<main>
-				<section className='section'>
-					<UserForm />
-				</section>
-			</main>
-		</>
-	);
-};
+  return (
+    <>
+      <Navbar />
+      <main>
+        <section className="section">
+          <UserForm />
+        </section>
+      </main>
+    </>
+  )
+}
 
-export default HomePage;
+export default HomePage
