@@ -8,8 +8,8 @@ const styles = {
 		left: '0',
 		right: '0',
 		top: '50%',
-		textAlign: 'center',
-	},
+		textAlign: 'center'
+	}
 };
 function Loading({ text = 'Loading', speed = 300 }) {
 	const [content, setContent] = React.useState(text);
@@ -29,7 +29,7 @@ function Loading({ text = 'Loading', speed = 300 }) {
 
 Loading.propTypes = {
 	text: PropTypes.string,
-	speed: PropTypes.number,
+	speed: PropTypes.number
 };
 
 export default Loading;
