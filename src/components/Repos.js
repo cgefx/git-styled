@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 import { langColors } from '../utils';
-import { ReposHeader, RepoGrid } from './styles/RepoStyles';
-import { DropdownStyles } from './styles/DropdownStyles';
+import { ReposHeader, RepoGrid } from './style';
+import { DropdownStyles } from './style';
 import Octicon, {
 	Repo,
 	Star,
 	RepoForked,
-	TriangleDown,
+	TriangleDown
 } from '@primer/octicons-react';
 
 const Repos = ({ repoData }) => {
@@ -22,7 +22,7 @@ const Repos = ({ repoData }) => {
 			const map = {
 				stars: 'stargazers_count',
 				updated: 'pushed_at',
-				size: 'size',
+				size: 'size'
 			};
 
 			const sortProperty = map[type];
@@ -32,7 +32,7 @@ const Repos = ({ repoData }) => {
 				.sort((a, b) =>
 					sortProperty === 'pushed_at'
 						? Date.parse(b[sortProperty]) - Date.parse(a[sortProperty])
-						: b[sortProperty] - a[sortProperty],
+						: b[sortProperty] - a[sortProperty]
 				)
 				.slice(0, LIMIT);
 
@@ -90,8 +90,8 @@ const Repos = ({ repoData }) => {
 				staggerConfig={{
 					default: {
 						reverse: false,
-						speed: 1,
-					},
+						speed: 1
+					}
 				}}
 			>
 				<RepoGrid>
@@ -120,7 +120,7 @@ const Repos = ({ repoData }) => {
 															<div
 																className='language'
 																style={{
-																	backgroundColor: langColors[repo.language],
+																	backgroundColor: langColors[repo.language]
 																}}
 															/>
 															{repo.language}

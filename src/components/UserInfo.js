@@ -7,8 +7,8 @@ import {
 	UserName,
 	UserHandle,
 	UserDetails,
-	UserStats,
-} from './styles/UserInfoStyles';
+	UserStats
+} from './style/UserInfoStyles';
 
 const UserInfo = ({ userData }) => (
 	<>
@@ -49,7 +49,7 @@ const UserInfo = ({ userData }) => (
 							{new Date(userData.created_at).toLocaleDateString('en-US', {
 								month: 'long',
 								day: 'numeric',
-								year: 'numeric',
+								year: 'numeric'
 							})}
 						</span>
 					)}
@@ -77,7 +77,7 @@ const UserInfo = ({ userData }) => (
 );
 
 UserInfo.propTypes = {
-	userData: PropTypes.object.isRequired,
+	userData: PropTypes.object.isRequired
 };
 
 export default UserInfo;

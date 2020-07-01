@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ErrorStyles = styled.div`
+export const ErrorStyles = styled.div`
 	margin: 6rem auto;
 	padding: 4.8rem;
 	max-width: 40rem;
@@ -16,5 +16,3 @@ const ErrorStyles = styled.div`
 		font-size: 2.4rem;
 	}
 `;
-
-export default ErrorStyles;

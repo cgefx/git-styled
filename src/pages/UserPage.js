@@ -6,13 +6,13 @@ import {
 	Repos,
 	RateLimit,
 	Error,
-	Loading,
+	Loading
 } from '../components';
 
 const UserPage = ({ match }) => {
 	const username = match.params.username;
 	const { userData, repoData, error, isLoading, rateLimit } = useGithub(
-		username,
+		username
 	);
 
 	return (

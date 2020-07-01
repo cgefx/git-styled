@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const UserFormStyles = styled.div`
+export const UserFormStyles = styled.div`
 	margin: 6rem auto;
-	padding: 3.2rem 2.4rem;
-	max-width: 60rem;
+	padding: 6rem 2.4rem;
+	max-width: 70rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -72,6 +72,4 @@ const UserFormStyles = styled.div`
 	}
 `;
 
-const FormContainer = styled.div``;
-
-export { UserFormStyles, FormContainer };
+export const FormContainer = styled.div``;

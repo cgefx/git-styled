@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ReposHeader = styled.header`
+export const ReposHeader = styled.header`
 	display: flex;
 	align-items: center;
 	margin-bottom: 2.2rem;
@@ -13,7 +13,7 @@ const ReposHeader = styled.header`
 	}
 `;
 
-const RepoGrid = styled.div`
+export const RepoGrid = styled.div`
 	margin: 0 auto;
 	padding: 0;
 	ul {
@@ -98,5 +98,3 @@ const RepoGrid = styled.div`
 		}
 	}
 `;
-
-export { ReposHeader, RepoGrid };
